@@ -1,0 +1,425 @@
+/* ===========================
+   XOBYWATEL ADMIN LOGIN
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    color:#fff;
+    background:#090909;
+}
+
+/* ===== TŁO ===== */
+
+.background{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at 20% 20%,rgba(102,0,255,.30),transparent 35%),
+    radial-gradient(circle at 80% 60%,rgba(0,180,255,.25),transparent 35%),
+    linear-gradient(135deg,#080808,#111,#0b0b0b);
+    animation:bgMove 18s infinite alternate ease-in-out;
+    z-index:-2;
+}
+
+.background::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+    repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 80px,
+        rgba(255,255,255,.02) 81px
+    );
+}
+
+@keyframes bgMove{
+
+0%{
+transform:scale(1);
+}
+
+100%{
+transform:scale(1.15);
+}
+
+}
+
+/* ===== HEADER ===== */
+
+header{
+
+height:90px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:0 40px;
+
+background:rgba(20,20,20,.65);
+
+backdrop-filter:blur(16px);
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.header-left h1{
+
+font-size:30px;
+
+letter-spacing:2px;
+
+color:#9f65ff;
+
+}
+
+.header-left span{
+
+color:#c9c9c9;
+
+font-size:14px;
+
+}
+
+.header-center{
+
+font-size:16px;
+
+font-style:italic;
+
+color:#7fd8ff;
+
+}
+
+.header-right{
+
+text-align:right;
+
+}
+
+#clock{
+
+font-size:28px;
+
+font-weight:bold;
+
+color:#00d5ff;
+
+}
+
+#date{
+
+font-size:14px;
+
+color:#bdbdbd;
+
+}
+
+/* ===== MAIN ===== */
+
+main{
+
+display:grid;
+
+grid-template-columns:700px 320px;
+
+justify-content:center;
+
+gap:35px;
+
+padding:50px;
+
+}
+
+/* ===== LOGIN ===== */
+
+.login-box{
+
+background:rgba(20,20,20,.70);
+
+backdrop-filter:blur(15px);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:20px;
+
+padding:40px;
+
+box-shadow:
+
+0 0 35px rgba(0,0,0,.45),
+
+0 0 40px rgba(106,0,255,.25);
+
+}
+
+.logo{
+
+text-align:center;
+
+margin-bottom:35px;
+
+}
+
+#logo{
+
+width:110px;
+
+margin-bottom:20px;
+
+}
+
+.logo h2{
+
+font-size:34px;
+
+margin-bottom:10px;
+
+}
+
+.logo p{
+
+color:#c8c8c8;
+
+}
+
+.login-form{
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+.login-form label{
+
+margin-top:18px;
+
+margin-bottom:8px;
+
+font-size:15px;
+
+color:#bdbdbd;
+
+}
+
+.login-form input{
+
+height:55px;
+
+padding:15px;
+
+background:#171717;
+
+border:1px solid #353535;
+
+border-radius:12px;
+
+color:white;
+
+font-size:16px;
+
+transition:.25s;
+
+}
+
+.login-form input:focus{
+
+outline:none;
+
+border-color:#7d4cff;
+
+box-shadow:0 0 20px rgba(125,76,255,.45);
+
+}
+
+#loginBtn{
+
+margin-top:30px;
+
+height:58px;
+
+border:none;
+
+border-radius:12px;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+color:white;
+
+background:linear-gradient(90deg,#5b11ff,#9123ff);
+
+transition:.25s;
+
+}
+
+#loginBtn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 0 30px rgba(145,35,255,.55);
+
+}
+
+#loginError{
+
+margin-top:18px;
+
+min-height:22px;
+
+text-align:center;
+
+color:#ff5b5b;
+
+}
+
+/* ===== STATUS ===== */
+
+.status-panel{
+
+display:flex;
+
+flex-direction:column;
+
+gap:25px;
+
+}
+
+.status-box,
+.info-box{
+
+background:rgba(20,20,20,.72);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:18px;
+
+padding:25px;
+
+backdrop-filter:blur(15px);
+
+}
+
+.status-box h3,
+.info-box h3{
+
+margin-bottom:18px;
+
+color:#9d67ff;
+
+}
+
+.status-item{
+
+display:flex;
+
+justify-content:space-between;
+
+margin:15px 0;
+
+}
+
+.online{
+
+color:#00ff88;
+
+font-weight:bold;
+
+}
+
+.info-box p{
+
+color:#a5a5a5;
+
+margin-top:15px;
+
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+
+position:fixed;
+
+bottom:15px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+font-size:13px;
+
+color:#999;
+
+}
+
+/* ===== RESPONSYWNOŚĆ ===== */
+
+@media(max-width:1200px){
+
+main{
+
+grid-template-columns:1fr;
+
+padding:25px;
+
+}
+
+.status-panel{
+
+order:-1;
+
+}
+
+}
+
+@media(max-width:768px){
+
+header{
+
+padding:20px;
+
+height:auto;
+
+flex-direction:column;
+
+gap:15px;
+
+text-align:center;
+
+}
+
+.login-box{
+
+padding:25px;
+
+}
+
+#clock{
+
+font-size:22px;
+
+}
+
+.logo h2{
+
+font-size:26px;
+
+}
+
+}

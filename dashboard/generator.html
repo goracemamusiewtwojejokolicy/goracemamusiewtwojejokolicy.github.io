@@ -1,0 +1,175 @@
+    <!DOCTYPE html>
+    <html lang="pl">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>XOBYWATEL • Panel Administratora</title>
+
+        <link rel="stylesheet" href="generator.css">
+    </head>
+
+    <body>
+
+        <div class="background"></div>
+
+<header>
+
+    <div class="header-left">
+        <h1>XOBYWATEL ADMIN</h1>
+        <span>Centrum Zarządzania</span>
+    </div>
+
+    <div class="header-center">
+        <div id="joke">
+            Ładowanie żartu dnia...
+        </div>
+    </div>
+
+    <div class="header-right">
+
+        <div id="clock">
+            00:00:00
+        </div>
+
+        <div id="date">
+            Sobota • 25-07-2026
+        </div>
+    </div>
+
+</header>
+
+<main>
+
+    <div class="generator-top">
+
+        <button id="backBtn" class="back-btn">
+            ← Powrót do panelu
+        </button>
+
+        <button id="logoutBtn" class="logout-btn">
+            Wyloguj się
+        </button>
+
+    </div>
+
+    <div class="generator-grid">
+
+        <section class="card">
+
+            <h2>📄 Dane dokumentu</h2>
+
+            <label>Imię</label>
+            <input type="text" id="name" placeholder="Jan">
+
+            <label>Nazwisko</label>
+            <input type="text" id="surname" placeholder="Kowalski">
+
+            <label>Płeć</label>
+            <select id="sex">
+                <option value="m">Mężczyzna</option>
+                <option value="k">Kobieta</option>
+            </select>
+
+            <label>Data urodzenia</label>
+            <input type="date" id="birthday" placeholder="22.01.2000">
+
+            <button id="autofillButton" class="generate-btn">
+                Wypełnij dane automatycznie
+            </button>
+
+            <div id="statusMessageAutofill"></div>
+
+            <label>Numer Pesel</label>
+            <input
+            type="text"
+            id="pesel"
+            maxlength="11">
+
+            <label>Imię ojca</label>
+            <input type="text" id="father_name">
+
+            <label>Imię matki</label>
+            <input type="text" id="mother_name">
+
+            <label>Obywatelstwo</label>
+            <input type="text" id="nationality">
+
+            <label>Miejsce urodzenia</label>
+            <input type="text" id="birthPlace">
+
+            <label>Kraj urodzenia</label>
+            <input type="text" id="countryOfBirth">
+
+            <label>Adres</label>
+            <input type="text" id="adress1">
+
+            <label>Kod pocztowy</label>
+            <input type="text" id="adress2">
+
+            <label>Miasto</label>
+            <input type="text" id="city">
+
+            <label>Nazwisko rodowe</label>
+            <input type="text" id="familyName">
+
+            <label>Nazwisko rodowe ojca</label>
+            <input type="text" id="fathersFamilyName">
+
+            <label>Nazwisko rodowe matki</label>
+            <input type="text" id="mothersFamilyName">
+
+        </section>
+
+        <section class="card">
+
+            <h2>⚙️ Generator</h2>
+
+            <label>Zdjęcie</label>
+
+        <div class="photo-box" id="photoBox">
+
+            <input
+            type="file"
+            id="photo"
+            accept="image/png,image/jpeg"
+            hidden>
+
+        <img id="photoPreview" alt="Podgląd zdjęcia">
+
+        <div id="photoText">
+        📷<br>
+        Kliknij aby wybrać zdjęcie
+    </div>
+
+</div>
+
+            <button id="genBtn" class="generate-btn">
+             Generuj dokument
+            </button>
+
+            <div class="token-box">
+
+                <h3>Token główny</h3>
+                <input id="mainToken" readonly>
+
+                <button id="copyMain">
+                 📋 Kopiuj
+                </button>
+
+                <button id="copyMain">
+                   📋 Kopiuj
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<script type="module" src="generator.js"></script>
+
+</body>
+</html>

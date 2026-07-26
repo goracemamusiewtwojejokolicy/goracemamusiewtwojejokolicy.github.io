@@ -1,0 +1,140 @@
+    <!DOCTYPE html>
+    <html lang="pl">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>XOBYWATEL • Panel Administratora</title>
+
+        <link rel="stylesheet" href="dashboard.css">
+    </head>
+
+    <body>
+
+        <div class="background"></div>
+
+<header>
+
+    <div class="header-left">
+        <h1>XOBYWATEL ADMIN</h1>
+        <span>Centrum Zarządzania</span>
+    </div>
+
+    <div class="header-center">
+        <div id="joke">
+            Ładowanie żartu dnia...
+        </div>
+    </div>
+
+    <div class="header-right">
+
+        <div id="clock">
+            00:00:00
+        </div>
+
+        <div id="date">
+            Sobota • 25-07-2026
+        </div>
+    </div>
+
+</header>
+    <main>
+
+    <section class="dashboard-section">
+
+        <h2>Panel aplikacji</h2>
+
+        <div class="apps-grid">
+
+            <a href="generator.html" class="app-card">
+
+                <div class="app-icon">🔑</div>
+
+                <h3>Generator</h3>
+
+                <p>
+                    Tworzenie nowych tokenów oraz dokumentów.
+                </p>
+
+            </a>
+
+            <a href="database.html" class="app-card">
+
+                <div class="app-icon">🗄️</div>
+
+                <h3>Baza danych</h3>
+
+                <p>
+                    Zarządzanie wszystkimi zapisanymi rekordami.
+                </p>
+
+            </a>
+
+            <a href="checktoken.html" class="app-card">
+
+                <div class="app-icon">✅</div>
+
+                <h3>Sprawdź token</h3>
+
+                <p>
+                    Weryfikacja poprawności i ważności tokenów.
+                </p>
+
+            </a>
+
+            <div class="app-card disabled">
+
+                <div class="app-icon">➕</div>
+
+                <h3>Wkrótce</h3>
+
+                <p>
+                    Kolejna aplikacja pojawi się tutaj.
+                </p>
+
+            </div>
+
+            <div class="app-card disabled">
+
+                <div class="app-icon">📂</div>
+
+                <h3>Wkrótce</h3>
+
+                <p>
+                    Miejsce na następny moduł.
+                </p>
+
+            </div>
+
+            <div class="app-card disabled">
+
+                <div class="app-icon">⚙️</div>
+
+                <h3>Ustawienia</h3>
+
+                <p>
+                    Panel konfiguracji zostanie dodany później.
+                </p>
+
+            </div>
+
+        </div>
+
+         <button class="logout-btn" id="logoutBtn">
+            Wyloguj
+        </button>
+
+    </section>
+</main>
+
+<footer>
+
+    © 2026 XOBYWATEL • Administrator Dashboard • Build 1.0
+
+</footer>
+
+<script type="module" src="dashboard.js"></script>
+
+</body>
+
+</html>

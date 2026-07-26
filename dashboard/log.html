@@ -1,0 +1,150 @@
+    <!DOCTYPE html>
+    <html lang="pl">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>XOBYWATEL • Panel Administratora</title>
+
+        <link rel="stylesheet" href="log.css">
+    </head>
+
+    <body>
+
+        <div class="background"></div>
+
+        <header>
+
+            <div class="header-left">
+                <h1>XOBYWATEL ADMIN</h1>
+                <span>Centrum Zarządzania</span>
+            </div>
+
+            <div class="header-center">
+                <div id="joke">
+                    Ładowanie żartu dnia...
+                </div>
+            </div>
+
+            <div class="header-right">
+
+                <div id="clock">
+                    00:00:00
+                </div>
+
+                <div id="date">
+                    Sobota • 25-07-2026
+                </div>
+
+            </div>
+
+        </header>
+
+        <main>
+
+            <section class="login-section">
+
+                <div class="login-box">
+
+                    <div class="logo">
+
+                        <h2>Logowanie administratora</h2>
+
+                        <p>
+                            Dostęp wyłącznie dla autoryzowanych administratorów.
+                        </p>
+
+                    </div>
+
+            <form class="login-form" id="loginForm" novalidate>
+
+                     <label for="email">Email administratora</label>
+
+                     <input
+                     id="email"
+                     type="email"
+                     autocomplete="username"
+                     placeholder="admin@xobywatel.pl"
+                     required>
+
+                    <label for="password">Hasło</label>
+
+                     <input
+                     id="password"
+                     type="password"
+                        autocomplete="current-password"
+                        placeholder="••••••••••"
+                        required>
+                      <button type="submit" id="loginBtn">
+                            Zaloguj do Dashboardu
+                      </button>
+                      <div id="loginError"></div>
+
+                   </form>
+
+                </div>
+                       
+            </section>
+
+            <aside class="status-panel">
+
+                <div class="status-box">
+
+                    <h3>Status systemu</h3>
+
+                    <div class="status-item">
+                        <span>Firebase Authentication</span>
+                        <span class="online">ONLINE</span>
+                    </div>
+
+                    <div class="status-item">
+                        <span>Realtime Database</span>
+                        <span class="online">ONLINE</span>
+                    </div>
+
+                    <div class="status-item">
+                        <span>Cloudinary</span>
+                        <span class="online">ONLINE</span>
+                    </div>
+
+                    <div class="status-item">
+                        <span>Generator Tokenów</span>
+                        <span class="online">ONLINE</span>
+                    </div>
+
+                </div>
+
+                <div class="info-box">
+
+                    <h3>Informacje</h3>
+
+                    <p>Wersja panelu</p>
+                    <strong>v1.0</strong>
+
+                    <br><br>
+
+                    <p>Środowisko</p>
+                    <strong>Production</strong>
+
+                    <br><br>
+
+                    <p>Administratorów</p>
+                    <strong>2</strong>
+
+                </div>
+
+            </aside>
+
+        </main>
+
+        <footer>
+
+            © 2026 XOBYWATEL • Administrator Dashboard • Build 1.0
+
+        </footer>
+
+        <script type="module" src="log.js"></script>
+
+    </body>
+
+    </html>
