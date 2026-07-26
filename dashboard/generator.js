@@ -172,44 +172,6 @@ function jokeOfTheDay() {
 
 jokeOfTheDay();
 
- // =========================================================
-        // LOGIKA GENEROWANIA DAT I DANYCH (AUTOFILL)
-        // ZMIENIONA: PESEL generowany tak jak w card.js
-        // =========================================================
-        
-     
-            // --- 2. Wypełnianie pól ---
-
-            // PESEL - teraz generujemy tak, jak w card.js (bez losowych fragmentów)
-            const birthMonth = birthDate.getMonth() + 1;
-            const birthDay = birthDate.getDate();
-            const birthYearMod = birthYear % 100;
-            
-            let peselMonth = birthMonth;
-            if (birthYear >= 2000) {
-                peselMonth += 20;
-            }
-            
-            // later zgodnie z card.js: mężczyzna -> 0295, kobieta -> 0382
-            const sexVal = sexInput.value;
-
-            let later = "0295";
-
-            if (sexVal === "k") {
-            later = "0382";
-            }
-
-            let dayStr = String(birthDay);
-            let monthForPesel = peselMonth;
-            if (birthDay < 10) dayStr = "0" + dayStr;
-            let monthStr = String(monthForPesel);
-            if (monthForPesel < 10) monthStr = "0" + monthStr;
-
-            const generatedPesel = String(birthYearMod).padStart(2, '0') + monthStr + dayStr + later + "7";
-            peselInput.value = generatedPesel.substring(0, 11);
-
-        });
-
          // =========================================================
         // FUNKCJE POMOCNICZE
         // =========================================================
