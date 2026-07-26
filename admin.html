@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Panel Admin - Tokeny Jednorazowe</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+    background:#0d1117;
+    color:white;
+    min-height:100vh;
+}
+
+header{
+    position:sticky;
+    top:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 35px;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(12px);
+    border-bottom:2px solid #00ffff;
+    box-shadow:0 0 20px rgba(0,255,255,.15);
+    z-index:999;
+}
+
+.logo{
+    font-size:32px;
+    font-weight:bold;
+    color:#00ffff;
+}
+
+.joke{
+    color:#8fffff;
+    font-size:17px;
+}
+
+.clock{
+    text-align:right;
+    color:#bdfcff;
+    font-weight:600;
+}
+
+#panel{
+    display:none;
+    width:100%;
+    padding:25px;
+}
+
+.dashboard{
+    display:grid;
+    grid-template-columns:420px 1fr;
+    gap:25px;
+    margin-top:25px;
+}
+
+.card{
+    background:#161b22;
+    border:1px solid #00ffff55;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 0 15px rgba(0,255,255,.08);
+}
+
+.card h2{
+    color:#00ffff;
+    margin-bottom:20px;
+}
+
+input,
+select{
+    width:100%;
+    padding:12px;
+    border:none;
+    outline:none;
+    border-radius:10px;
+    background:#0d1117;
+    color:white;
+    margin-bottom:15px;
+    border:1px solid #2a2a2a;
+}
+
+input:focus,
+select:focus{
+    border-color:#00ffff;
+}
+
+button{
+    background:#00bcd4;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:13px 20px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.25s;
+}
+
+button:hover{
+    background:#00e5ff;
+    transform:translateY(-2px);
+}
+
+.links{
+    margin-top:20px;
+}
+
+.link-item{
+    background:#10151d;
+    border:1px solid #00ffff30;
+    border-radius:12px;
+    padding:12px;
+    margin-top:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.photoBox{
+    margin-top:20px;
+    height:220px;
+    border:2px dashed #00ffff66;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#8befff;
+    cursor:pointer;
+}
+
+.tokenBox{
+    margin-top:20px;
+    background:#10151d;
+    padding:15px;
+    border-radius:15px;
+    word-break:break-word;
+    min-height:80px;
+}
+
+.database{
+    min-height:700px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #30363d;
+}
+
+th{
+    color:#00ffff;
+    text-align:left;
+}
+
+@media(max-width:1100px){
+
+.dashboard{
+grid-template-columns:1fr;
+}
+
+header{
+flex-direction:column;
+gap:10px;
+text-align:center;
+}
+
+.clock{
+text-align:center;
+}
+
+}
+</style>
+</head>
+<body>
+
+<header>
+
+<div class="logo">
+Panel Administratora
+</div>
+
+<div class="joke" id="joke">
+Ładowanie żartu...
+</div>
+
+<div class="clock">
+<div id="day"></div>
+<div id="time"></div>
+</div>
+
+</header>
+
+<div id="panel">
+  <h2>Generowanie tokenów</h2>
+  <label>Ile tokenów wygenerować?</label><br>
+  <input id="count" type="number" value="2" min="1" max="1000"><br>
+
+  <label>Długość tokenu</label><br>
+  <input id="length" type="number" value="15" min="8" max="64"><br>
+
+  <label>Twój link</label><br>
+  <input id="prefix" type="text" value="MOJASTRONA.COM" style="width:320px"><br>
+
+<label>Ważność tokenu</label><br>
+
+<select id="lifetime">
+    <option value="300">TEST</option>
+    <option value="86400">1 dzień</option>
+    <option value="604800">1 tydzień</option>
+    <option value="2592000">30 dni</option>
+    <option value="0">Na zawsze</option>
+</select>
+
+  <h2>Dane osoby</h2>
+
+<label>Imię</label><br>
+<input type="text" id="name" placeholder="Jan"><br>
+
+<label>Nazwisko</label><br>
+<input type="text" id="surname" placeholder="Kowalski"><br>
+
+<label>Płeć</label><br>
+<select id="sex">
+    <option value="m">Mężczyzna</option>
+    <option value="k">Kobieta</option>
+</select><br>
+
+<label>Data urodzenia</label><br>
+<input type="text" id="birthday" placeholder="22.01.2000"><br>
+
+<label>Numer identyfikacyjny</label><br>
+<input type="text" id="numerpracownika" placeholder="00212202957"><br>
+
+<label>Seria dokumentu</label><br>
+<input type="text" id="mdow_series" placeholder="MWYC 83194"><br>
+
+<label>Data wydania</label><br>
+<input type="text" id="issue_date" placeholder="23.01.2026"><br>
+
+<label>Data ważności</label><br>
+<input type="text" id="expiry_date" placeholder="23.01.2036"><br>
+
+<label>Imię ojca</label><br>
+<input type="text" id="father_name" placeholder="Maciej"><br>
+
+<label>Imię matki</label><br>
+<input type="text" id="mother_name" placeholder="Ewa"><br>
+
+<label>Obywatelstwo</label><br>
+<input type="text" id="nationality" placeholder="POLSKIE"><br>
+
+<label>Miejsce urodzenia</label><br>
+<input type="text" id="birthPlace" placeholder="Warszawa"><br>
+
+<label>Kraj urodzenia</label><br>
+<input type="text" id="countryOfBirth" placeholder="Polska"><br>
+
+<label>Adres</label><br>
+<input type="text" id="adress1" placeholder="Chopina 4/56"><br>
+
+<label>Kod pocztowy</label><br>
+<input type="text" id="adress2" placeholder="42-250"><br>
+
+<label>Miasto</label><br>
+<input type="text" id="city" placeholder="Warszawa"><br>
+
+<label>Data zameldowania</label><br>
+<input type="text" id="home_date" placeholder="16.05.2016"><br>
+
+<label>Nazwisko rodowe</label><br>
+<input type="text" id="familyName" placeholder="Kowalski"><br>
+
+<label>Nazwisko rodowe ojca</label><br>
+<input type="text" id="fathersFamilyName" placeholder="Kowalski"><br>
+
+<label>Nazwisko rodowe matki</label><br>
+<input type="text" id="mothersFamilyName" placeholder="Nowak"><br>
+
+<label>Zdjęcie</label><br>
+<input type="file" id="photo" accept="image/png,image/jpeg"><br><br>
+
+  <button id="genBtn">Generuj i zapisz w Firebase</button>
+  <button id="localBtn">Generuj lokalnie</button>
+
+  <p class="small">Lista tokenów / linków:</p>
+  <div id="out" class="links"></div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+
+// === KONFIG FIREBASE ===
+const firebaseConfig = {
+  apiKey: "AIzaSyCugha5MbWAXTM689GtCzw1VoI9YwD4s_o",
+  authDomain: "xobywatel-38a31.firebaseapp.com",
+  databaseURL: "https://xobywatel-38a31-default-rtdb.europe-west1.firebasedatabase.app/",
+    projectId: "xobywatel-38a31",
+  storageBucket: "xobywatel-38a31.firebasestorage.app",
+  messagingSenderId: "583181736460",
+  appId: "1:583181736460:web:650d74177f0952bd20ec29",
+  measurementId: "G-6XW5T3SHGZ"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const auth = getAuth(app);
+
+// --- ELEMENTY DOM ---
+const panel = document.getElementById("panel");
+
+const countEl = document.getElementById("count");
+const lengthEl = document.getElementById("length");
+const prefixEl = document.getElementById("prefix");
+const outEl = document.getElementById("out");
+const genBtn = document.getElementById("genBtn");
+const localBtn = document.getElementById("localBtn");
+const lifetimeEl = document.getElementById("lifetime");
+const photoEl = document.getElementById("photo");
+
+let lastGenerated = [];
+
+
+// --- TOKENY ---
+function randToken(len){
+  const alphabet="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-";
+  const arr=new Uint8Array(len);
+  crypto.getRandomValues(arr);
+  let s="";
+  for(let i=0;i<len;i++){ s+=alphabet[arr[i]%alphabet.length]; }
+  return s;
+}
+
+function generateTokens(count,len,prefix){
+  const set=new Set();
+  const arr=[];
+  while(arr.length<count){
+    const t=randToken(len);
+    if(!set.has(t)){
+      set.add(t);
+      arr.push({token:t,link:prefix+encodeURIComponent(t)});
+    }
+  }
+  return arr;
+}
+
+async function saveToFirebase(list){
+
+    const updates = {};
+
+    const lifetime = Number(lifetimeEl.value);
+
+    const expiresAt =
+        lifetime === 0
+        ? 0
+        : Date.now() + lifetime * 1000;
+
+    list.forEach(item=>{
+
+        updates["/tokens/"+item.token] = {
+
+            token: item.token,
+            used: false,
+            expiresAt: expiresAt,
+
+            name: document.getElementById("name").value,
+            surname: document.getElementById("surname").value,
+            sex: document.getElementById("sex").value,
+            birthday: document.getElementById("birthday").value,
+            numerpracownika: document.getElementById("numerpracownika").value,
+            mdow_series: document.getElementById("mdow_series").value,
+            issue_date: document.getElementById("issue_date").value,
+            expiry_date: document.getElementById("expiry_date").value,
+            father_name: document.getElementById("father_name").value,
+            mother_name: document.getElementById("mother_name").value,
+            nationality: document.getElementById("nationality").value,
+            birthPlace: document.getElementById("birthPlace").value,
+            countryOfBirth: document.getElementById("countryOfBirth").value,
+            adress1: document.getElementById("adress1").valuefirebaseConfig
+            adress2: document.getElementById("adress2").value,
+            city: document.getElementById("city").value,
+            home_date: document.getElementById("home_date").value,
+            familyName: document.getElementById("familyName").value,
+            fathersFamilyName: document.getElementById("fathersFamilyName").value,
+            mothersFamilyName: document.getElementById("mothersFamilyName").value
+
+        };
+
+    });
+
+    await update(ref(db), updates);
+
+}
+
+function renderList(list){
+  outEl.innerHTML = "";
+  if(list.length===0) return;
+  list.forEach(item=>{
+    const div = document.createElement("div");
+    div.className="link-item";
+    div.innerHTML = `<span>${item.link}</span> <button>📋 Kopiuj</button>`;
+    const btn = div.querySelector("button");
+    btn.onclick = ()=>{ navigator.clipboard.writeText(item.link); btn.textContent="✅ Skopiowano"; setTimeout(()=>btn.textContent="📋 Kopiuj",1000);}
+    outEl.appendChild(div);
+  });
+}
+
+// --- OBSŁUGA PRZYCISKÓW ---
+genBtn.addEventListener("click",async()=>{
+  genBtn.disabled=true; genBtn.textContent="Generowanie...";
+  try{
+    const count=Math.min(1000,Math.max(1,Number(countEl.value)||10));
+    const len=Math.min(64,Math.max(8,Number(lengthEl.value)||20));
+    const prefix=(prefixEl.value||"").trim();
+    const list=generateTokens(count,len,prefix);
+    await saveToFirebase(list);
+    lastGenerated=list;
+    renderList(list);
+    genBtn.textContent="Gotowe!";
+  }catch(e){ console.error(e); alert("Błąd przy zapisie do Firebase!"); genBtn.textContent="Błąd";}
+  finally{ genBtn.disabled=false; setTimeout(()=>genBtn.textContent="Generuj i zapisz w Firebase",2000);}
+});
+
+localBtn.addEventListener("click",()=>{
+  const count=Math.min(1000,Math.max(1,Number(countEl.value)||10));
+  const len=Math.min(64,Math.max(8,Number(lengthEl.value)||20));
+  const prefix=(prefixEl.value||"").trim();
+  const list=generateTokens(count,len,prefix);
+  lastGenerated=list;
+  renderList(list);
+});
+
+const jokes=[
+"Administrator też człowiek... podobno.",
+"Najlepszy backup? Ten, którego nigdy nie trzeba używać.",
+"404 humor not found.",
+"Nie dotykaj produkcji w piątek.",
+"Ctrl+S uratował więcej żyć niż pasy bezpieczeństwa.",
+"Firebase znowu działa? Cud.",
+"Każdy bug jest tylko nieudokumentowaną funkcją."
+];
+
+const joke=document.getElementById("joke");
+
+joke.textContent=jokes[new Date().getDate()%jokes.length];
+
+function updateClock(){
+
+const d=new Date();
+
+const days=[
+"Niedziela",
+"Poniedziałek",
+"Wtorek",
+"Środa",
+"Czwartek",
+"Piątek",
+"Sobota"
+];
+
+const dd=String(d.getDate()).padStart(2,"0");
+const mm=String(d.getMonth()+1).padStart(2,"0");
+const yyyy=d.getFullYear();
+
+document.getElementById("day").textContent=
+days[d.getDay()]+" • "+dd+"."+mm+"."+yyyy;
+
+document.getElementById("time").textContent=
+d.toLocaleTimeString("pl-PL");
+
+}
+
+updateClock();
+
+setInterval(updateClock,1000);
+
+</script>
+
+</body>
+</html>
