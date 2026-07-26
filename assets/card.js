@@ -2,13 +2,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebas
 import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCugha5MbWAXTM689GtCzw1VoI9YwD4s_o",
-    authDomain: "xobywatel-38a31.firebaseapp.com",
-    databaseURL: "https://xobywatel-38a31-default-rtdb.europe-west1.firebasedatabase.app/",
-    projectId: "xobywatel-38a31",
-    storageBucket: "xobywatel-38a31.firebasestorage.app",
-    messagingSenderId: "583181736460",
-    appId: "1:583181736460:web:650d74177f0952bd20ec29"
+     apiKey: "AIzaSyCugha5MbWAXTM689GtCzw1VoI9YwD4s_o",
+  authDomain: "xobywatel-38a31.firebaseapp.com",
+  databaseURL: "https://xobywatel-38a31-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "xobywatel-38a31",
+  storageBucket: "xobywatel-38a31.firebasestorage.app",
+  messagingSenderId: "583181736460",
+  appId: "1:583181736460:web:650d74177f0952bd20ec29",
+  measurementId: "G-6XW5T3SHGZ"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -24,6 +25,14 @@ if (!snap.exists()) {
 }
 
 const data = snap.val();
+const photo = document.querySelector(".id_own_image");
+
+if (photo && data.photo) {
+    photo.style.backgroundImage = `url("${data.photo}")`;
+    photo.style.backgroundSize = "cover";
+    photo.style.backgroundPosition = "center";
+    photo.style.backgroundRepeat = "no-repeat";
+}
 
 var confirmElement = document.querySelector(".confirm");
 
@@ -160,8 +169,7 @@ if (month < 10){
   month = "0" + month
 }
 
-var pesel = year.toString().substring(2) + month + day + later + "7";
-setData("pesel", pesel)
+setData("pesel", data['pesel']);
 
 function setData(id, value){
 
