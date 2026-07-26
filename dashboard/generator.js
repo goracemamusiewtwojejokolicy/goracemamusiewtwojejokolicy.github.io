@@ -269,3 +269,5 @@ const qrLink = `https://twoj-projekt.web.app/?token=${token}`;
 document.getElementById("mainToken").value = qrLink;
 
 alert("Dokument został wygenerowany.");
+
+});
